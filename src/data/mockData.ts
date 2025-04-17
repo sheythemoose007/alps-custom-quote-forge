@@ -13,7 +13,7 @@ export const liftKits: Product[] = [
     name: 'AlpineBasic 2" Leveling Kit',
     description: 'Includes front spacers and rear blocks',
     price: 299.99,
-    image: 'https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?w=800&auto=format&fit=crop&q=60',
+    image: '/placeholder.svg',
     tier: 'budget-friendly',
     category: 'lift-kit',
     selected: true
@@ -23,7 +23,7 @@ export const liftKits: Product[] = [
     name: 'MaxTrac 2.5" Leveling Kit',
     description: 'Front strut spacers and rear blocks',
     price: 349.99,
-    image: 'https://images.unsplash.com/photo-1597987072661-c06345ea1f64?w=800&auto=format&fit=crop&q=60',
+    image: '/placeholder.svg',
     tier: 'budget-friendly',
     category: 'lift-kit'
   },
@@ -32,35 +32,8 @@ export const liftKits: Product[] = [
     name: 'ReadyLift 3" SST Lift Kit',
     description: 'Includes shocks, springs and hardware',
     price: 799.99,
-    image: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&auto=format&fit=crop&q=60',
-    tier: 'best-value',
-    category: 'lift-kit'
-  },
-  {
-    id: 'lift-value-2',
-    name: 'Rough Country 4" Lift Kit',
-    description: 'Complete lift with N3 shocks',
-    price: 899.99,
     image: '/placeholder.svg',
     tier: 'best-value',
-    category: 'lift-kit'
-  },
-  {
-    id: 'lift-premium-1',
-    name: 'King 3" Performance Kit',
-    description: 'Premium remote reservoir shocks and coilovers',
-    price: 2499.99,
-    image: '/placeholder.svg',
-    tier: 'premium',
-    category: 'lift-kit'
-  },
-  {
-    id: 'lift-premium-2',
-    name: 'Icon 4.5" Elite Suspension',
-    description: 'Full system with billet components and adjustable shocks',
-    price: 3299.99,
-    image: '/placeholder.svg',
-    tier: 'premium',
     category: 'lift-kit'
   }
 ];
@@ -71,7 +44,7 @@ export const wheels: Product[] = [
     name: 'AlpineBasic Alloy 16"',
     description: 'Set of 4 aluminum wheels',
     price: 599.99,
-    image: 'https://images.unsplash.com/photo-1612857090862-a42ea06a5a7c?w=800&auto=format&fit=crop&q=60',
+    image: '/placeholder.svg',
     tier: 'budget-friendly',
     category: 'wheels'
   },
@@ -80,7 +53,7 @@ export const wheels: Product[] = [
     name: 'Pro Comp Series 16" Steel',
     description: 'Durable steel construction, set of 4',
     price: 499.99,
-    image: 'https://images.unsplash.com/photo-1626455613895-c627d527bc7c?w=800&auto=format&fit=crop&q=60',
+    image: '/placeholder.svg',
     tier: 'budget-friendly',
     category: 'wheels'
   },
@@ -89,7 +62,7 @@ export const wheels: Product[] = [
     name: 'Method MR305 17"',
     description: 'Set of 4 reinforced alloy wheels',
     price: 999.99,
-    image: 'https://images.unsplash.com/photo-1626455612656-95180fc0d624?w=800&auto=format&fit=crop&q=60',
+    image: '/placeholder.svg',
     tier: 'best-value',
     category: 'wheels',
     selected: true
@@ -111,15 +84,6 @@ export const wheels: Product[] = [
     image: '/placeholder.svg',
     tier: 'premium',
     category: 'wheels'
-  },
-  {
-    id: 'wheels-premium-2',
-    name: 'Method Race 105 Beadlock 17"',
-    description: 'True beadlock wheels with replaceable rings, set of 4',
-    price: 2299.99,
-    image: '/placeholder.svg',
-    tier: 'premium',
-    category: 'wheels'
   }
 ];
 
@@ -129,7 +93,7 @@ export const tires: Product[] = [
     name: 'AlpineGrip A/T 31"',
     description: 'Set of 4 all-terrain tires',
     price: 699.99,
-    image: 'https://images.unsplash.com/photo-1605558430155-fb3841c7f43f?w=800&auto=format&fit=crop&q=60',
+    image: '/placeholder.svg',
     tier: 'budget-friendly',
     category: 'tires'
   },
@@ -138,7 +102,7 @@ export const tires: Product[] = [
     name: 'Falken Wildpeak A/T3W 31"',
     description: 'All-terrain all-weather, set of 4',
     price: 799.99,
-    image: 'https://images.unsplash.com/photo-1542370285-b8eb8317469c?w=800&auto=format&fit=crop&q=60',
+    image: '/placeholder.svg',
     tier: 'budget-friendly',
     category: 'tires'
   },
@@ -166,15 +130,6 @@ export const tires: Product[] = [
     name: 'Nitto Ridge Grappler 35"',
     description: 'Hybrid terrain premium tires, set of 4',
     price: 1699.99,
-    image: '/placeholder.svg',
-    tier: 'premium',
-    category: 'tires'
-  },
-  {
-    id: 'tires-premium-2',
-    name: 'BF Goodrich Mud-Terrain KM3 35"',
-    description: 'Extreme off-road capability, set of 4',
-    price: 1899.99,
     image: '/placeholder.svg',
     tier: 'premium',
     category: 'tires'
