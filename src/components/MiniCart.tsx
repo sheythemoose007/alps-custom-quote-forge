@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuote } from '../context/QuoteContext';
 import { Button } from '@/components/ui/button';
-import { Trash2 } from 'lucide-react';
+import { Trash2, CreditCard, CircleDollarSign, Paypal } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const MiniCart = () => {
@@ -135,6 +135,21 @@ const MiniCart = () => {
               <div className="text-lg font-bold text-alpine-blue mb-1">Initial Deposit Required:</div>
               <div className="text-2xl font-bold text-alpine-green">${depositAmount.toFixed(2)}</div>
               <p className="text-xs text-gray-600 mt-1">25% of total build cost</p>
+              
+              <div className="mt-4 space-y-2">
+                <Button variant="outline" className="w-full flex items-center justify-center gap-2">
+                  <CreditCard className="h-4 w-4" />
+                  Pay Deposit with Card
+                </Button>
+                <Button variant="outline" className="w-full flex items-center justify-center gap-2">
+                  <CircleDollarSign className="h-4 w-4" />
+                  Pay Deposit with ACH
+                </Button>
+                <Button variant="outline" className="w-full flex items-center justify-center gap-2">
+                  <Paypal className="h-4 w-4" />
+                  Pay Deposit with PayPal
+                </Button>
+              </div>
             </div>
           </div>
           

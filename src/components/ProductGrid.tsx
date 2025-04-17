@@ -1,12 +1,41 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import { useQuote } from '../context/QuoteContext';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import TierSelector from './TierSelector';
+import { Badge } from '@/components/ui/badge';
 
 const ProductGrid = () => {
   const { products, selectProduct } = useQuote();
   const { liftKits, wheels, tires } = products;
-  const [selectedTier, setSelectedTier] = useState('best-value');
+
+  const getTierBadge = (price: number, category: string) => {
+    let tier;
+    switch (category) {
+      case 'lift-kit':
+        tier = price < 1500 ? 'budget-friendly' : price < 2500 ? 'best-value' : 'premium';
+        break;
+      case 'wheels':
+        tier = price < 200 ? 'budget-friendly' : price < 350 ? 'best-value' : 'premium';
+        break;
+      case 'tires':
+        tier = price < 250 ? 'budget-friendly' : price < 400 ? 'best-value' : 'premium';
+        break;
+      default:
+        tier = 'best-value';
+    }
+    
+    const variants = {
+      'budget-friendly': 'bg-blue-100 text-blue-800',
+      'best-value': 'bg-green-100 text-green-800',
+      'premium': 'bg-purple-100 text-purple-800'
+    };
+    
+    return (
+      <span className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold ${variants[tier]}`}>
+        {tier === 'budget-friendly' ? 'Budget' : tier === 'best-value' ? 'Best Value' : 'Premium'}
+      </span>
+    );
+  };
 
   return (
     <div className="mb-8">
@@ -14,16 +43,12 @@ const ProductGrid = () => {
         Your Custom Build Foundation
       </h2>
       
-      <TierSelector selectedTier={selectedTier} onTierSelect={setSelectedTier} />
-      
       <div className="space-y-8">
         <div>
           <h3 className="text-lg font-semibold mb-4">Lift Kits</h3>
           <Carousel>
             <CarouselContent>
-              {liftKits
-                .filter(item => selectedTier === 'all' || item.tier === selectedTier)
-                .map(item => (
+              {liftKits.slice(0, 3).map(item => (
                 <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
                   <div 
                     className={`relative aspect-square overflow-hidden rounded-lg ${
@@ -35,6 +60,7 @@ const ProductGrid = () => {
                       alt={item.name}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
+                    {getTierBadge(item.price, item.category)}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent p-4 flex flex-col justify-end text-white">
                       <h4 className="font-medium">{item.name}</h4>
                       <p className="text-sm opacity-90 mb-2">{item.description}</p>
@@ -65,9 +91,7 @@ const ProductGrid = () => {
           <h3 className="text-lg font-semibold mb-4">Wheels</h3>
           <Carousel>
             <CarouselContent>
-              {wheels
-                .filter(item => selectedTier === 'all' || item.tier === selectedTier)
-                .map(item => (
+              {wheels.slice(0, 7).map(item => (
                 <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
                   <div 
                     className={`relative aspect-square overflow-hidden rounded-lg ${
@@ -79,6 +103,7 @@ const ProductGrid = () => {
                       alt={item.name}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
+                    {getTierBadge(item.price, item.category)}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent p-4 flex flex-col justify-end text-white">
                       <h4 className="font-medium">{item.name}</h4>
                       <p className="text-sm opacity-90 mb-2">{item.description}</p>
@@ -109,9 +134,7 @@ const ProductGrid = () => {
           <h3 className="text-lg font-semibold mb-4">Tires</h3>
           <Carousel>
             <CarouselContent>
-              {tires
-                .filter(item => selectedTier === 'all' || item.tier === selectedTier)
-                .map(item => (
+              {tires.slice(0, 5).map(item => (
                 <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
                   <div 
                     className={`relative aspect-square overflow-hidden rounded-lg ${
@@ -123,6 +146,7 @@ const ProductGrid = () => {
                       alt={item.name}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
+                    {getTierBadge(item.price, item.category)}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent p-4 flex flex-col justify-end text-white">
                       <h4 className="font-medium">{item.name}</h4>
                       <p className="text-sm opacity-90 mb-2">{item.description}</p>
