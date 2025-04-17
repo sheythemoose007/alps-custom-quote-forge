@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuote } from '../context/QuoteContext';
 import { Button } from '@/components/ui/button';
-import { Trash2, CreditCard, CircleDollarSign, Paypal } from 'lucide-react';
+import { Trash2, CreditCard, CircleDollarSign, CreditCard as PaypalIcon } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const MiniCart = () => {
@@ -146,7 +146,7 @@ const MiniCart = () => {
                   Pay Deposit with ACH
                 </Button>
                 <Button variant="outline" className="w-full flex items-center justify-center gap-2">
-                  <Paypal className="h-4 w-4" />
+                  <PaypalIcon className="h-4 w-4" />
                   Pay Deposit with PayPal
                 </Button>
               </div>
