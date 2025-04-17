@@ -7,6 +7,9 @@ import ProductGrid from '../components/ProductGrid';
 import AddOnsSection from '../components/AddOnsSection';
 import MiniCart from '../components/MiniCart';
 import ShopCredentials from '../components/ShopCredentials';
+import ReviewSection from '../components/ReviewSection';
+import FinancingSection from '../components/FinancingSection';
+import FAQSection from '../components/FAQSection';
 
 const Index = () => {
   return (
@@ -23,6 +26,9 @@ const Index = () => {
             <div className="col-span-1 lg:col-span-2">
               <AddOnsSection />
               <ShopCredentials />
+              <ReviewSection />
+              <FinancingSection />
+              <FAQSection />
             </div>
             
             <div className="col-span-1">

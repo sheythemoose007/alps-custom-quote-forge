@@ -1,122 +1,152 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuote } from '../context/QuoteContext';
-import ProductCarousel from './ProductCarousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import TierSelector from './TierSelector';
 
 const ProductGrid = () => {
   const { products, selectProduct } = useQuote();
   const { liftKits, wheels, tires } = products;
+  const [selectedTier, setSelectedTier] = useState('best-value');
 
   return (
     <div className="mb-8">
       <h2 className="text-2xl font-bold mb-6 text-center text-alpine-blue">
-        Your Custom Build Foundation: Lift, Wheels & Tires
+        Your Custom Build Foundation
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="flex flex-col">
-          <h3 className="text-xl font-semibold mb-4 text-center text-alpine-green bg-alpine-cream rounded-t-lg py-2">
-            Budget Friendly
-          </h3>
-          
-          <div className="grid grid-rows-3 gap-4 flex-grow">
-            <div className="h-64">
-              <h4 className="text-sm uppercase tracking-wider mb-2">Lift Kits</h4>
-              <ProductCarousel 
-                products={liftKits}
-                tier="budget-friendly"
-                onSelect={selectProduct}
-              />
-            </div>
-            
-            <div className="h-64">
-              <h4 className="text-sm uppercase tracking-wider mb-2">Wheels</h4>
-              <ProductCarousel 
-                products={wheels}
-                tier="budget-friendly"
-                onSelect={selectProduct}
-              />
-            </div>
-            
-            <div className="h-64">
-              <h4 className="text-sm uppercase tracking-wider mb-2">Tires</h4>
-              <ProductCarousel 
-                products={tires}
-                tier="budget-friendly"
-                onSelect={selectProduct}
-              />
-            </div>
-          </div>
+      <TierSelector selectedTier={selectedTier} onTierSelect={setSelectedTier} />
+      
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Lift Kits</h3>
+          <Carousel>
+            <CarouselContent>
+              {liftKits
+                .filter(item => selectedTier === 'all' || item.tier === selectedTier)
+                .map(item => (
+                <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+                  <div 
+                    className={`relative aspect-square overflow-hidden rounded-lg ${
+                      item.selected ? 'ring-2 ring-alpine-green' : ''
+                    }`}
+                  >
+                    <img 
+                      src={item.image} 
+                      alt={item.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent p-4 flex flex-col justify-end text-white">
+                      <h4 className="font-medium">{item.name}</h4>
+                      <p className="text-sm opacity-90 mb-2">{item.description}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-lg font-bold">${item.price}</span>
+                        <button
+                          onClick={() => selectProduct(item)}
+                          className={`px-4 py-1 rounded ${
+                            item.selected
+                              ? 'bg-alpine-green text-white'
+                              : 'bg-white text-black'
+                          }`}
+                        >
+                          {item.selected ? 'Selected' : 'Select'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
         
-        <div className="flex flex-col">
-          <h3 className="text-xl font-semibold mb-4 text-center text-alpine-blue bg-alpine-lightgray rounded-t-lg py-2">
-            Best Value
-          </h3>
-          
-          <div className="grid grid-rows-3 gap-4 flex-grow">
-            <div className="h-64">
-              <h4 className="text-sm uppercase tracking-wider mb-2">Lift Kits</h4>
-              <ProductCarousel 
-                products={liftKits}
-                tier="best-value"
-                onSelect={selectProduct}
-              />
-            </div>
-            
-            <div className="h-64">
-              <h4 className="text-sm uppercase tracking-wider mb-2">Wheels</h4>
-              <ProductCarousel 
-                products={wheels}
-                tier="best-value"
-                onSelect={selectProduct}
-              />
-            </div>
-            
-            <div className="h-64">
-              <h4 className="text-sm uppercase tracking-wider mb-2">Tires</h4>
-              <ProductCarousel 
-                products={tires}
-                tier="best-value"
-                onSelect={selectProduct}
-              />
-            </div>
-          </div>
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Wheels</h3>
+          <Carousel>
+            <CarouselContent>
+              {wheels
+                .filter(item => selectedTier === 'all' || item.tier === selectedTier)
+                .map(item => (
+                <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+                  <div 
+                    className={`relative aspect-square overflow-hidden rounded-lg ${
+                      item.selected ? 'ring-2 ring-alpine-green' : ''
+                    }`}
+                  >
+                    <img 
+                      src={item.image} 
+                      alt={item.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent p-4 flex flex-col justify-end text-white">
+                      <h4 className="font-medium">{item.name}</h4>
+                      <p className="text-sm opacity-90 mb-2">{item.description}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-lg font-bold">${item.price}</span>
+                        <button
+                          onClick={() => selectProduct(item)}
+                          className={`px-4 py-1 rounded ${
+                            item.selected
+                              ? 'bg-alpine-green text-white'
+                              : 'bg-white text-black'
+                          }`}
+                        >
+                          {item.selected ? 'Selected' : 'Select'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
-        
-        <div className="flex flex-col">
-          <h3 className="text-xl font-semibold mb-4 text-center text-white bg-alpine-gray rounded-t-lg py-2">
-            Premium Performance
-          </h3>
-          
-          <div className="grid grid-rows-3 gap-4 flex-grow">
-            <div className="h-64">
-              <h4 className="text-sm uppercase tracking-wider mb-2">Lift Kits</h4>
-              <ProductCarousel 
-                products={liftKits}
-                tier="premium"
-                onSelect={selectProduct}
-              />
-            </div>
-            
-            <div className="h-64">
-              <h4 className="text-sm uppercase tracking-wider mb-2">Wheels</h4>
-              <ProductCarousel 
-                products={wheels}
-                tier="premium"
-                onSelect={selectProduct}
-              />
-            </div>
-            
-            <div className="h-64">
-              <h4 className="text-sm uppercase tracking-wider mb-2">Tires</h4>
-              <ProductCarousel 
-                products={tires}
-                tier="premium"
-                onSelect={selectProduct}
-              />
-            </div>
-          </div>
+
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Tires</h3>
+          <Carousel>
+            <CarouselContent>
+              {tires
+                .filter(item => selectedTier === 'all' || item.tier === selectedTier)
+                .map(item => (
+                <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+                  <div 
+                    className={`relative aspect-square overflow-hidden rounded-lg ${
+                      item.selected ? 'ring-2 ring-alpine-green' : ''
+                    }`}
+                  >
+                    <img 
+                      src={item.image} 
+                      alt={item.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent p-4 flex flex-col justify-end text-white">
+                      <h4 className="font-medium">{item.name}</h4>
+                      <p className="text-sm opacity-90 mb-2">{item.description}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-lg font-bold">${item.price}</span>
+                        <button
+                          onClick={() => selectProduct(item)}
+                          className={`px-4 py-1 rounded ${
+                            item.selected
+                              ? 'bg-alpine-green text-white'
+                              : 'bg-white text-black'
+                          }`}
+                        >
+                          {item.selected ? 'Selected' : 'Select'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
       </div>
     </div>

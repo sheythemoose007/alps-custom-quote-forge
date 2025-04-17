@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useQuote } from '../context/QuoteContext';
 import { Button } from '@/components/ui/button';
@@ -7,13 +6,14 @@ import { Separator } from '@/components/ui/separator';
 
 const MiniCart = () => {
   const { cart, summary, removeProduct } = useQuote();
+  const depositAmount = summary.total * 0.25;
   
   // Group cart items by category
   const liftKits = cart.filter(item => item.category === 'lift-kit');
   const wheels = cart.filter(item => item.category === 'wheels');
   const tires = cart.filter(item => item.category === 'tires');
   const addOns = cart.filter(item => item.category === 'add-on');
-  
+
   return (
     <div className="mini-cart sticky top-6">
       <h3 className="text-xl font-semibold mb-4 text-alpine-blue">Your Quote Summary</h3>
@@ -108,27 +108,33 @@ const MiniCart = () => {
           
           <Separator className="my-4" />
           
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between">
               <span>Subtotal (Parts)</span>
               <span className="font-medium">${summary.subtotal.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between">
               <span>Estimated Labor</span>
               <span className="font-medium">${summary.labor.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between">
               <span>Shop Supplies</span>
               <span className="font-medium">${summary.fees.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between">
               <span>Estimated Taxes</span>
               <span className="font-medium">${summary.tax.toFixed(2)}</span>
             </div>
-            <Separator className="my-2" />
-            <div className="flex justify-between font-bold">
+            
+            <div className="flex justify-between text-base">
               <span>Estimated Total</span>
-              <span>${summary.total.toFixed(2)}</span>
+              <span className="font-medium">${summary.total.toFixed(2)}</span>
+            </div>
+            
+            <div className="mt-4 p-4 bg-alpine-cream rounded-lg">
+              <div className="text-lg font-bold text-alpine-blue mb-1">Initial Deposit Required:</div>
+              <div className="text-2xl font-bold text-alpine-green">${depositAmount.toFixed(2)}</div>
+              <p className="text-xs text-gray-600 mt-1">25% of total build cost</p>
             </div>
           </div>
           
